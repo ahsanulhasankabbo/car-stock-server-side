@@ -31,6 +31,7 @@ const uri = `mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASS}@cluster
 const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true, serverApi: ServerApiVersion.v1 });
 async function run() {
     try {
+        
         await client.connect();
         const serviceCollection = client.db('car-stock').collection('service');
 
@@ -79,6 +80,7 @@ async function run() {
             const result = await serviceCollection.insertOne(newService);
             res.send(result);
         })
+
         //delete
         app.delete('/manageinventories/:id', async (req, res) => {
             const id = req.params.id;
