@@ -6,8 +6,14 @@ const cors = require('cors');
 require('dotenv').config();
 const port = process.env.PORT || 5000;
 
+const corsConfig = {
+    origin: true,
+    credentials: true,
+  }
+  app.use(cors(corsConfig))
+  app.options('*', cors(corsConfig))
 
-app.use(cors());
+// app.use(cors());
 app.use(express.json());
 
 function verifyJWT(req, res, next) {
